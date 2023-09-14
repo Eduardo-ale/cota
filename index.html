@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de Franquia de Impressão</title>
+  <style>
+    body {
+      background-image: url("logo3.png");
+      font-family: Arial, sans-serif;
+      margin: 2;
+      padding: 2;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 400px;
+      padding: 70px;
+      background-color: hsl(0, 1%, 63%);
+      box-shadow: 0 8px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    label, input {
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    input[type="text"], input[type="number"], input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 15px 25px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #resultado {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #aumentoFranquiaDiv {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="imagemh2" src="logo2.jpg" alt="center">
+  
+    <h1>Consulta de Franquia de Impressão</h1>
+    <form id="consultaForm">
+      <label for="escola"><a>Nome da Escola</label>
+      <input type="text" id="escola" name="escola" required>
+      
+      <label for="cidade">Cidade:</label>
+      <input type="text" id="cidade" name="cidade" required>
+      
+      <label for="quantidadeMaquinas">Quantidade de Máquinas</label>
+      <input type="number" id="quantidadeMaquinas" name="quantidadeMaquinas" required>
+      
+      <label for="numeroSerie">Número de Série da Máquina</label>
+      <input type="text" id="numeroSerie" name="numeroSerie" required>
+      
+      <label for="telefone">Telefone para Contato:</label>
+      <input type="tel" id="telefone" name="telefone" required>
+      
+      <button type="submit">Consultar Franquia</button>
+    </form>
+    
+    <div id="resultado">
+      <h2>Resultado da Consulta</h2>
+      <p>Total da Franquia: <span id="totalFranquia"></span></p>
+      <label for="aumentoFranquiaPergunta">Deseja pedir um aumento de franquia?</label><br>
+      <select id="aumentoFranquiaPergunta">
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option><br>
+      </select>
+      <div id="aumentoFranquiaDiv"><br>
+        <label for="valorAumentoFranquia">Pedido de Aumento de Franquia</label><bR>
+        <input type="text" id="valorAumentoFranquia" name="valorAumentoFranquia"><Br>
+        <button id="enviarPedidoAumento">Enviar Pedido</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.getElementById("consultaForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const quantidadeMaquinas = parseFloat(document.getElementById("quantidadeMaquinas").value);
+      const totalFranquia = calcularFranquia(quantidadeMaquinas);
+
+      document.getElementById("totalFranquia").textContent = `$${totalFranquia.toFixed(2)}`;
+      document.getElementById("resultado").style.display = "block";
+    });
+
+    document.getElementById("aumentoFranquiaPergunta").addEventListener("change", function() {
+      const selectedOption = this.value;
+      if (selectedOption === "sim") {
+        document.getElementById("aumentoFranquiaDiv").style.display = "block";
+      } else {
+        document.getElementById("aumentoFranquiaDiv").style.display = "none";
+      }
+    });
+
+    document.getElementById("enviarPedidoAumento").addEventListener("click", function() {
+      const pedido = document.getElementById("valorAumentoFranquia").value;
+      // Aqui você pode implementar a lógica para enviar o pedido de aumento de franquia.
+      if (pedido) {
+        alert("Pedido de aumento de franquia enviado:\n" + pedido);
+      } else {
+        alert("Pedido de aumento de franquia não enviado.");
+      }
+    });
+
+    function calcularFranquia(quantidadeMaquinas) {
+      // Implemente aqui a lógica para calcular o total da franquia com base na quantidade de máquinas.
+      // Substitua este cálculo pela lógica real.
+      return quantidadeMaquinas * 50;
+    }
+  </script>
+</body>
+</html>
